@@ -39,9 +39,8 @@ def shift_letter(letter, shift):
     # Stay within the function. Only use the parameters as input. The function should return your answer.
     if letter == " ":
         return " "
-    value = ord(letter)
-    end_value = value + shift
-    if end_value > 90:
+    end_value = ord(letter) + shift
+    while end_value >= 91:
         end_value -= 26
     return chr(end_value)
 
@@ -68,8 +67,8 @@ def caesar_cipher(message, shift):
     new_message = ""
     for letter in message:
         new_value = ord(letter) + shift
-        if new_value > 90:
-            new_value -= 26
+        while end_value >= 91:
+            end_value -= 26
         new_message += chr(new_value)
     return new_message
 
@@ -104,7 +103,7 @@ def shift_by_letter(letter, letter_shift):
     if letter == " ":
         return " "
     end_value = ord(letter) + (ord(letter_shift)-65)
-    if end_value > 90:
+    while end_value >= 91:
         end_value -= 26
     return chr(end_value)
 
@@ -147,7 +146,7 @@ def vigenere_cipher(message, key):
             continue
         letter_shift = key[position % len(key)]
         end_value = ord(letter) + (ord(letter_shift)-65)
-        if end_value > 90:
+        while end_value >= 91:
             end_value -= 26
         new_message += chr(end_value)
     return new_message
