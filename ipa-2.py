@@ -67,8 +67,8 @@ def caesar_cipher(message, shift):
     new_message = ""
     for letter in message:
         new_value = ord(letter) + shift
-        while end_value >= 91:
-            end_value -= 26
+        while new_value >= 91:
+            new_value -= 26
         new_message += chr(new_value)
     return new_message
 
@@ -139,12 +139,12 @@ def vigenere_cipher(message, key):
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
     new_message = ""
-    for letter in message:
-        position = message.find(letter)
+    for i in range(0,len(message)):
+        letter = message[i]
         if letter == " ":
             new_message += " "
             continue
-        letter_shift = key[position % len(key)]
+        letter_shift = key[i % len(key)]
         end_value = ord(letter) + (ord(letter_shift)-65)
         while end_value >= 91:
             end_value -= 26
