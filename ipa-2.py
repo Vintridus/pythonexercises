@@ -66,6 +66,9 @@ def caesar_cipher(message, shift):
     # Stay within the function. Only use the parameters as input. The function should return your answer.
     new_message = ""
     for letter in message:
+        if letter == " ":
+            new_message += " "
+            continue
         new_value = ord(letter) + shift
         while new_value >= 91:
             new_value -= 26

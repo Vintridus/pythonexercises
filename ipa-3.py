@@ -91,7 +91,7 @@ def tic_tac_toe(board):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-   winner = ""
+    winner = ""
     size = len(board)
     players = ["X","O"]
     for check in players:
@@ -151,16 +151,13 @@ def eta(first_stop, second_stop, route_map):
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
     routelist = list(route_map.keys())
-    print(routelist)
     time = 0
     current = first_stop
     while current != second_stop:
         for i in range(0, len(routelist)):
-            print(f'A {routelist[i][0]}')
-            print(f'B {routelist[i][1]}')
             if current == routelist[i][0]:
                 time += route_map[routelist[i]]["travel_time_mins"]
                 current = routelist[i][1]
             if current == second_stop:
                 return time
-        return time
+    return time
