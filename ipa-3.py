@@ -42,20 +42,20 @@ def relationship_status(from_member, to_member, social_graph):
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
     namelist = list(social_graph.keys())
-    A = ''
-    B = ''
+    personA = ''
+    personB = ''
     followA = False
     followB = False
     for i in range(0,len(social_graph)):
         if f'{social_graph[namelist[i]]["first_name"]} {social_graph[namelist[i]]["last_name"]}' == from_member:
-            A += namelist[i]
+            personA += namelist[i]
         if f'{social_graph[namelist[i]]["first_name"]} {social_graph[namelist[i]]["last_name"]}' == to_member:
-            B += namelist[i]
-    for i in range(0,len(social_graph[A]["following"])):
-        if social_graph[A]["following"][i] == B:
+            personB += namelist[i]
+    for i in range(0,len(social_graph[personA]["following"])):
+        if social_graph[personA]["following"][i] == personB:
             followA = True
-    for i in range(0,len(social_graph[B]["following"])):
-        if social_graph[B]["following"][i] == A:
+    for i in range(0,len(social_graph[personB]["following"])):
+        if social_graph[personB]["following"][i] == personA:
             followB = True
     if followA + followB == 2:
         return "friends"
