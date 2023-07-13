@@ -42,13 +42,15 @@ def relationship_status(from_member, to_member, social_graph):
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
     namelist = list(social_graph.keys())
+    A = ''
+    B = ''
     followA = False
     followB = False
     for i in range(0,len(social_graph)):
         if f'{social_graph[namelist[i]]["first_name"]} {social_graph[namelist[i]]["last_name"]}' == from_member:
-            A = namelist[i]
+            A += namelist[i]
         if f'{social_graph[namelist[i]]["first_name"]} {social_graph[namelist[i]]["last_name"]}' == to_member:
-            B = namelist[i]
+            B += namelist[i]
     for i in range(0,len(social_graph[A]["following"])):
         if social_graph[A]["following"][i] == B:
             followA = True
@@ -116,7 +118,7 @@ def tic_tac_toe(board):
                 winner = check
     if winner == "":
         return "NO WINNER"
-    statement = f'check'
+    statement = f'{check}'
     return statement
 
 def eta(first_stop, second_stop, route_map):
