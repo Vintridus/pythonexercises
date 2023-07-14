@@ -42,8 +42,8 @@ def relationship_status(from_member, to_member, social_graph):
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
     namelist = list(social_graph.keys())
-    personA = ''
-    personB = ''
+    personA = ""
+    personB = ""
     followA = False
     followB = False
     for i in range(0,len(social_graph)):
@@ -51,20 +51,21 @@ def relationship_status(from_member, to_member, social_graph):
             personA += namelist[i]
         if f'{social_graph[namelist[i]]["first_name"]} {social_graph[namelist[i]]["last_name"]}' == to_member:
             personB += namelist[i]
-    for i in range(0,len(social_graph[personA]["following"])):
-        if social_graph[personA]["following"][i] == personB:
-            followA = True
-    for i in range(0,len(social_graph[personB]["following"])):
-        if social_graph[personB]["following"][i] == personA:
-            followB = True
-    if followA + followB == 2:
-        return "friends"
-    elif followA == True and followB == False:
-        return "follower"
-    elif followA == False and followB == True:
-        return "followed by"
-    else:
-        return "no relationship"
+    if personA != "" and personB != "":
+        for i in range(0,len(social_graph[personA]["following"])):
+            if social_graph[personA]["following"][i] == personB:
+                followA = True
+        for i in range(0,len(social_graph[personB]["following"])):
+            if social_graph[personB]["following"][i] == personA:
+                followB = True
+        if followA + followB == 2:
+            return "friends"
+        elif followA == True and followB == False:
+            return "follower"
+        elif followA == False and followB == True:
+            return "followed by"
+        else:
+            return "no relationship"
 
 
 def tic_tac_toe(board):
@@ -96,26 +97,26 @@ def tic_tac_toe(board):
     winner = ""
     size = len(board)
     players = ["X","O"]
-    for check in players:
-        for i in range(0,size):
-            row = board[i]
-            if row.count(check) == size:
-                winner = check
-            column = []
-            for j in range(0, size):
-                column += board[j][i]
-            if column.count(check) == size:
-                winner = check
+    while winner == "":
+        for check in players:
+            for i in range(0,size):
+                row = board[i]
+                if row.count(check) == size:
+                    winner = check
+                column = []
+                for j in range(0, size):
+                    column += board[j][i]
+                if column.count(check) == size:
+                    winner = check
             diagonal = []
-            for j in range(0, size):
-                diagonal += board[j][j]
-            if diagonal.count(check) == size:
-                winner = check
             diagonal2 = []
             for j in range(0, size):
+                diagonal += board[j][j]
+                if diagonal.count(check) == size:
+                    winner = check
                 diagonal2 += board[j][size-1-j]
-            if diagonal2.count(check) == size:
-                winner = check
+                if diagonal2.count(check) == size:
+                    winner = check
     if winner == "":
         return "NO WINNER"
     statement = f'{check}'
