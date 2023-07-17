@@ -48,24 +48,25 @@ def relationship_status(from_member, to_member, social_graph):
     followB = False
     for i in range(0,len(social_graph)):
         if f'{social_graph[namelist[i]]["first_name"]} {social_graph[namelist[i]]["last_name"]}' == from_member:
-            personA += namelist[i]
+            personA = namelist[i]
+            print(personA)
         if f'{social_graph[namelist[i]]["first_name"]} {social_graph[namelist[i]]["last_name"]}' == to_member:
-            personB += namelist[i]
-    if personA != "" and personB != "":
-        for i in range(0,len(social_graph[personA]["following"])):
-            if social_graph[personA]["following"][i] == personB:
-                followA = True
-        for i in range(0,len(social_graph[personB]["following"])):
-            if social_graph[personB]["following"][i] == personA:
-                followB = True
-        if followA + followB == 2:
-            return "friends"
-        elif followA == True and followB == False:
-            return "follower"
-        elif followA == False and followB == True:
-            return "followed by"
-        else:
-            return "no relationship"
+            personB = namelist[i]
+            print(personB)
+    for i in range(0,len(social_graph[personA]["following"])):
+        if social_graph[personA]["following"][i] == personB:
+            followA = True
+    for i in range(0,len(social_graph[personB]["following"])):
+        if social_graph[personB]["following"][i] == personA:
+            followB = True
+    if followA + followB == 2:
+        return "friends"
+    elif followA == True and followB == False:
+        return "follower"
+    elif followA == False and followB == True:
+        return "followed by"
+    else:
+        return "no relationship"
 
 
 def tic_tac_toe(board):
@@ -97,29 +98,28 @@ def tic_tac_toe(board):
     winner = ""
     size = len(board)
     players = ["X","O"]
-    while winner == "":
-        for check in players:
-            for i in range(0,size):
-                row = board[i]
-                if row.count(check) == size:
-                    winner = check
-                column = []
-                for j in range(0, size):
-                    column += board[j][i]
-                if column.count(check) == size:
-                    winner = check
-            diagonal = []
-            diagonal2 = []
+    for check in players:
+        for i in range(0,size):
+            row = board[i]
+            if row.count(check) == size:
+                winner = check
+            column = []
             for j in range(0, size):
-                diagonal += board[j][j]
-                if diagonal.count(check) == size:
-                    winner = check
-                diagonal2 += board[j][size-1-j]
-                if diagonal2.count(check) == size:
-                    winner = check
+                column += board[j][i]
+            if column.count(check) == size:
+                winner = check
+        diagonal = []
+        diagonal2 = []
+        for j in range(0, size):
+            diagonal += board[j][j]
+            if diagonal.count(check) == size:
+                winner = check
+            diagonal2 += board[j][size-1-j]
+            if diagonal2.count(check) == size:
+                winner = check
     if winner == "":
         return "NO WINNER"
-    statement = f'{check}'
+    statement = f'{winner}'
     return statement
 
 def eta(first_stop, second_stop, route_map):
